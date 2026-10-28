@@ -1,0 +1,17 @@
+# Local policy fixture. Do not deploy.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: team-label-example
+spec:
+  selector:
+    matchLabels:
+      app: demo
+  template:
+    metadata:
+      labels:
+        app: demo
+    spec:
+      containers:
+        - name: demo
+          image: nginx:1.27

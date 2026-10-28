@@ -1,0 +1,85 @@
+{
+  "recordedAt": "2026-10-28T04:52:28.761Z",
+  "trivyVersion": "0.75.0",
+  "scope": "Synthetic local evidence. Inventory generation and NodeInfo policy evaluation only. No vulnerability matching, image pull, host collection, or cluster access.",
+  "fixtures": {
+    "site/labs/inventory/rootfs/etc/os-release": "31dbf839d456c9a29f7fc1fd9b10cdfb25a8854716005a1719b3fb525e8edc50",
+    "site/labs/inventory/rootfs/etc/alpine-release": "84cce5af664e3dd0fb0305d3a3484c37d0d95e0ef7ce0d168b9c03f7dd89631e",
+    "site/labs/inventory/rootfs/lib/apk/db/installed": "7c645db8392463d1946fc9110455e437fe169a72a543583eea07f091ff8bd94f",
+    "site/labs/node/restricted.json": "ebf4970b1b93282c7eb70b2d35fd224e98da48e5a6d122ee6af214bc88b20a56",
+    "site/labs/node/readable.json": "73e92ae48a5c9845fb3a7218e50c07d95e08ec6dfd10bd27ff5e561e2254621e",
+    "site/labs/node/absent.json": "66864ff582363ab34dd06115ee8eb59d6422582306f9514e5831b061fa8313e2"
+  },
+  "inventory": [
+    {
+      "case": "Original package metadata; no library binary",
+      "packages": [
+        {
+          "name": "libcrypto3",
+          "version": "3.3.2-r0",
+          "purl": "pkg:apk/alpine/libcrypto3@3.3.2-r0?arch=aarch64&distro=3.20.3",
+          "sourceName": "openssl",
+          "sourceVersion": "3.3.2-r0"
+        }
+      ]
+    },
+    {
+      "case": "Change only the package record to 3.3.2-r1",
+      "packages": [
+        {
+          "name": "libcrypto3",
+          "version": "3.3.2-r1",
+          "purl": "pkg:apk/alpine/libcrypto3@3.3.2-r1?arch=aarch64&distro=3.20.3",
+          "sourceName": "openssl",
+          "sourceVersion": "3.3.2-r1"
+        }
+      ]
+    },
+    {
+      "case": "Remove the package database from the rootfs",
+      "packages": []
+    }
+  ],
+  "nodeEvidence": [
+    {
+      "fixture": "site/labs/node/restricted.json",
+      "values": [
+        600
+      ],
+      "findings": [
+        {
+          "ID": "KCV-0073",
+          "Status": "PASS",
+          "Severity": "HIGH",
+          "Message": "No issues found"
+        }
+      ]
+    },
+    {
+      "fixture": "site/labs/node/readable.json",
+      "values": [
+        644
+      ],
+      "findings": [
+        {
+          "ID": "KCV-0073",
+          "Status": "FAIL",
+          "Severity": "HIGH",
+          "Message": "Ensure that the --kubeconfig kubelet.conf file permissions are set to 600 or more restrictive"
+        }
+      ]
+    },
+    {
+      "fixture": "site/labs/node/absent.json",
+      "values": [],
+      "findings": [
+        {
+          "ID": "KCV-0073",
+          "Status": "PASS",
+          "Severity": "HIGH",
+          "Message": "No issues found"
+        }
+      ]
+    }
+  ]
+}

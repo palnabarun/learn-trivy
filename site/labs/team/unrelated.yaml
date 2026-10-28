@@ -1,0 +1,7 @@
+# Local policy fixture. Do not deploy.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: unrelated-to-deployment-policy
+data:
+  message: This resource is outside the custom rule's scope.

@@ -1,0 +1,11 @@
+# Deliberately insecure local scan fixture. Do not apply to a cluster.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: trivy-learning-fixture
+spec:
+  containers:
+    - name: demo
+      image: nginx:1.27
+      securityContext:
+        privileged: true

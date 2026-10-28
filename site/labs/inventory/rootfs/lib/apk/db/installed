@@ -1,0 +1,10 @@
+P:libcrypto3
+V:3.3.2-r0
+A:aarch64
+S:100
+I:100
+T:Synthetic teaching record, no library binary included
+U:https://www.openssl.org/
+L:Apache-2.0
+o:openssl
+

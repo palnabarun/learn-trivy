@@ -1,0 +1,71 @@
+{
+  "recordedAt": "2026-10-27T17:28:27.215Z",
+  "trivyVersion": "0.75.0",
+  "scope": "Local configuration scans only. No images were pulled, no vulnerability DB was used, and no cluster was accessed.",
+  "ruleSha256": "ce93c71bceab6fc795322716c1400b7a73d6d6d98db8f1bd3948f4ce1f1cda9c",
+  "observations": [
+    {
+      "fixture": "site/labs/team/missing.yaml",
+      "fixtureSha256": "feb405af2e3aa49fdcfbdf411e3a06d2c617339726d4eb795227bd2dc5fc3110",
+      "exitStatus": 0,
+      "customFindingCount": 1,
+      "totalFindingCount": 18,
+      "findings": [
+        {
+          "ID": "ID001",
+          "Severity": "MEDIUM",
+          "Message": "Deployment needs a nonempty metadata.labels.team",
+          "Status": "FAIL"
+        }
+      ]
+    },
+    {
+      "fixture": "site/labs/team/passing.yaml",
+      "fixtureSha256": "edcbeb06ff2594256a72c97fed89473f71befc88c785d32a74c370ddddd32139",
+      "exitStatus": 0,
+      "customFindingCount": 0,
+      "totalFindingCount": 17,
+      "findings": []
+    },
+    {
+      "fixture": "site/labs/team/blank.yaml",
+      "fixtureSha256": "85c8f00b39f02ed829d5b1737c7f93cc66c48614e06b74a065079d401c302489",
+      "exitStatus": 0,
+      "customFindingCount": 1,
+      "totalFindingCount": 18,
+      "findings": [
+        {
+          "ID": "ID001",
+          "Severity": "MEDIUM",
+          "Message": "Deployment needs a nonempty metadata.labels.team",
+          "Status": "FAIL"
+        }
+      ]
+    },
+    {
+      "fixture": "site/labs/team/unrelated.yaml",
+      "fixtureSha256": "7c7343fb197936f1220d9729f2e30c5d32fbab19ce4792d27b1b55c350c3ee96",
+      "exitStatus": 0,
+      "customFindingCount": 0,
+      "totalFindingCount": 0,
+      "findings": []
+    },
+    {
+      "fixture": "site/labs/team/missing.yaml",
+      "behavior": "Findings gate with --exit-code 7",
+      "exitStatus": 7
+    },
+    {
+      "behavior": "Invalid rule compilation with default gate settings",
+      "exitStatus": 1,
+      "stderrClassification": "Rule compilation failure; exact temporary path omitted"
+    },
+    {
+      "fixture": "site/labs/privileged-pod.yaml",
+      "behavior": "Change privileged from true to false in a temporary copy",
+      "removedFinding": "KSV-0017",
+      "beforeCount": 17,
+      "afterCount": 16
+    }
+  ]
+}
